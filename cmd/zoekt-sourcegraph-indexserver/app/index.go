@@ -21,6 +21,7 @@ import (
 	"github.com/sourcegraph/zoekt"
 	configv1 "github.com/sourcegraph/zoekt/cmd/zoekt-sourcegraph-indexserver/grpc/protos/sourcegraph/zoekt/configuration/v1"
 	"github.com/sourcegraph/zoekt/index"
+	"github.com/sourcegraph/zoekt/internal/cmdexec"
 	"github.com/sourcegraph/zoekt/internal/ctags"
 )
 
@@ -415,7 +416,7 @@ func indexRepo(ctx context.Context, gitDir string, sourcegraph Sourcegraph, o *i
 	args = append(args, o.BuildOptions().Args()...)
 	args = append(args, gitDir)
 
-	cmd := exec.CommandContext(ctx, "zoekt-git-index", args...)
+	cmd := cmdexec.ZoektCommand(ctx, "zoekt-git-index", args...)
 	cmd.Stdin = &bytes.Buffer{}
 	if err := c.runCmd(cmd); err != nil {
 		return err

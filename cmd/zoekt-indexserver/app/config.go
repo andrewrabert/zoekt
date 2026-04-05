@@ -25,6 +25,8 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+
+	"github.com/sourcegraph/zoekt/internal/cmdexec"
 	"time"
 
 	"github.com/fsnotify/fsnotify"
@@ -174,7 +176,7 @@ func executeMirror(cfg []ConfigEntry, repoDir string, pendingRepos chan<- string
 	for _, c := range cfg {
 		var cmd *exec.Cmd
 		if c.GitHubURL != "" || c.GithubUser != "" || c.GithubOrg != "" {
-			cmd = exec.Command("zoekt-mirror-github",
+			cmd = cmdexec.Command("zoekt-mirror-github",
 				"-dest", repoDir)
 			if c.GitHubURL != "" {
 				cmd.Args = append(cmd.Args, "-url", c.GitHubURL)
@@ -212,14 +214,14 @@ func executeMirror(cfg []ConfigEntry, repoDir string, pendingRepos chan<- string
 				cmd.Args = append(cmd.Args, "-visibility", v)
 			}
 		} else if c.GitilesURL != "" {
-			cmd = exec.Command("zoekt-mirror-gitiles",
+			cmd = cmdexec.Command("zoekt-mirror-gitiles",
 				"-dest", repoDir, "-name", c.Name)
 			if c.Exclude != "" {
 				cmd.Args = append(cmd.Args, "-exclude", c.Exclude)
 			}
 			cmd.Args = append(cmd.Args, c.GitilesURL)
 		} else if c.CGitURL != "" {
-			cmd = exec.Command("zoekt-mirror-gitiles",
+			cmd = cmdexec.Command("zoekt-mirror-gitiles",
 				"-type", "cgit",
 				"-dest", repoDir, "-name", c.Name)
 			if c.Exclude != "" {
@@ -227,7 +229,7 @@ func executeMirror(cfg []ConfigEntry, repoDir string, pendingRepos chan<- string
 			}
 			cmd.Args = append(cmd.Args, c.CGitURL)
 		} else if c.BitBucketServerURL != "" {
-			cmd = exec.Command("zoekt-mirror-bitbucket-server",
+			cmd = cmdexec.Command("zoekt-mirror-bitbucket-server",
 				"-dest", repoDir, "-url", c.BitBucketServerURL)
 			if c.BitBucketServerProject != "" {
 				cmd.Args = append(cmd.Args, "-project", c.BitBucketServerProject)
@@ -251,7 +253,7 @@ func executeMirror(cfg []ConfigEntry, repoDir string, pendingRepos chan<- string
 				cmd.Args = append(cmd.Args, "-delete")
 			}
 		} else if c.GitLabURL != "" {
-			cmd = exec.Command("zoekt-mirror-gitlab",
+			cmd = cmdexec.Command("zoekt-mirror-gitlab",
 				"-dest", repoDir, "-url", c.GitLabURL)
 			if c.Name != "" {
 				cmd.Args = append(cmd.Args, "-name", c.Name)
@@ -275,7 +277,7 @@ func executeMirror(cfg []ConfigEntry, repoDir string, pendingRepos chan<- string
 				cmd.Args = append(cmd.Args, "-delete")
 			}
 		} else if c.GerritApiURL != "" {
-			cmd = exec.Command("zoekt-mirror-gerrit",
+			cmd = cmdexec.Command("zoekt-mirror-gerrit",
 				"-dest", repoDir)
 			if c.CredentialPath != "" {
 				cmd.Args = append(cmd.Args, "-http-credentials", c.CredentialPath)
@@ -300,7 +302,7 @@ func executeMirror(cfg []ConfigEntry, repoDir string, pendingRepos chan<- string
 			}
 			cmd.Args = append(cmd.Args, c.GerritApiURL)
 		} else if c.GiteaURL != "" {
-			cmd = exec.Command("zoekt-mirror-gitea", "-dest", repoDir)
+			cmd = cmdexec.Command("zoekt-mirror-gitea", "-dest", repoDir)
 			if c.GiteaURL != "" {
 				cmd.Args = append(cmd.Args, "-url", c.GiteaURL)
 			}

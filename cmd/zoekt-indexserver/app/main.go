@@ -32,6 +32,7 @@ import (
 
 	"github.com/sourcegraph/zoekt/gitindex"
 	"github.com/sourcegraph/zoekt/index"
+	"github.com/sourcegraph/zoekt/internal/cmdexec"
 )
 
 const day = time.Hour * 24
@@ -165,7 +166,7 @@ func indexPendingRepo(dir, indexDir, repoDir string, opts *Options) {
 	}
 	args = append(args, opts.indexFlags...)
 	args = append(args, dir)
-	cmd := exec.CommandContext(ctx, "zoekt-git-index", args...)
+	cmd := cmdexec.ZoektCommand(ctx, "zoekt-git-index", args...)
 	loggedRun(cmd)
 }
 

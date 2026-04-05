@@ -15,6 +15,7 @@ import (
 	"go.uber.org/atomic"
 
 	"github.com/sourcegraph/zoekt/index"
+	"github.com/sourcegraph/zoekt/internal/cmdexec"
 	"github.com/sourcegraph/zoekt/internal/tenant"
 )
 
@@ -43,13 +44,13 @@ func pickCandidates(shards []candidate, targetSizeBytes int64) compound {
 var mergeRunning atomic.Bool
 
 func defaultMergeCmd(args ...string) *exec.Cmd {
-	cmd := exec.Command("zoekt-merge-index", "merge")
+	cmd := cmdexec.Command("zoekt-merge-index", "merge")
 	cmd.Args = append(cmd.Args, args...)
 	return cmd
 }
 
 func defaultExplodeCmd(args ...string) *exec.Cmd {
-	cmd := exec.Command("zoekt-merge-index", "explode")
+	cmd := cmdexec.Command("zoekt-merge-index", "explode")
 	cmd.Args = append(cmd.Args, args...)
 	return cmd
 }

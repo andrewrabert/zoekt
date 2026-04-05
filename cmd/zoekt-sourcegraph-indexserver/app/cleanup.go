@@ -3,7 +3,6 @@ package app
 import (
 	"fmt"
 	"os"
-	"os/exec"
 	"path/filepath"
 	"sort"
 	"strings"
@@ -15,6 +14,7 @@ import (
 
 	"github.com/sourcegraph/zoekt"
 	"github.com/sourcegraph/zoekt/index"
+	"github.com/sourcegraph/zoekt/internal/cmdexec"
 )
 
 var metricCleanupDuration = promauto.NewHistogram(prometheus.HistogramOpts{
@@ -419,7 +419,7 @@ func (s *Server) vacuum() {
 		}
 
 		if info.Size() < s.mergeOpts.minSizeBytes {
-			cmd := exec.Command("zoekt-merge-index", "explode", path)
+			cmd := cmdexec.Command("zoekt-merge-index", "explode", path)
 
 			var b []byte
 			s.muIndexDir.Global(func() {
@@ -452,7 +452,7 @@ func removeTombstones(fn string) ([]*zoekt.Repository, error) {
 	if mockMerger != nil {
 		runMerge = mockMerger
 	} else {
-		runMerge = exec.Command("zoekt-merge-index", "merge", fn).Run
+		runMerge = cmdexec.Command("zoekt-merge-index", "merge", fn).Run
 	}
 
 	repos, _, err := index.ReadMetadataPath(fn)

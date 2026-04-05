@@ -32,6 +32,8 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/sourcegraph/zoekt/internal/cmdexec"
+
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/collectors"
 	"github.com/prometheus/client_golang/prometheus/promauto"
@@ -76,7 +78,7 @@ type indexRequest struct {
 
 // This function is declared as var so that we can stub it in test
 var executeCmd = func(ctx context.Context, name string, arg ...string) error {
-	cmd := exec.CommandContext(ctx, name, arg...)
+	cmd := cmdexec.ZoektCommand(ctx, name, arg...)
 	cmd.Stdin = &bytes.Buffer{}
 	err := loggedRun(cmd)
 
