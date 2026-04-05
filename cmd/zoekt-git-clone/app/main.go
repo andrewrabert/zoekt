@@ -16,7 +16,7 @@
 // them.  It is strongly recommended to get a personal API token from
 // https://github.com/settings/tokens, save the token in a file, and
 // point the --token option to it.
-package main
+package app
 
 import (
 	"flag"
@@ -31,7 +31,7 @@ import (
 	"github.com/sourcegraph/zoekt/gitindex"
 )
 
-func main() {
+func Main() {
 	dest := flag.String("dest", "", "destination directory")
 	nameFlag := flag.String("name", "", "name of repository")
 	repoIDFlag := flag.Uint("repoid", 0, "id of repository")

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 // Command zoekt-test compares the zoekt results with raw substring search.
-package main
+package app
 
 import (
 	"bufio"
@@ -170,8 +170,8 @@ func compare(dir, patfile string, caseSensitive bool) error {
 }
 
 var (
-	memprofile = flag.String("mem_profile", "", "write memory profile to `file`")
-	cpuprofile = flag.String("cpu_profile", "", "write cpu profile to `file`")
+	memprofile *string
+	cpuprofile *string
 )
 
 func testLoadIndexDir(indexDir string) {
@@ -201,7 +201,10 @@ func testLoadIndexDir(indexDir string) {
 	}
 }
 
-func main() {
+func Main() {
+	memprofile = flag.String("mem_profile", "", "write memory profile to `file`")
+	cpuprofile = flag.String("cpu_profile", "", "write cpu profile to `file`")
+
 	repo := flag.String("repo", "", "repository to search")
 	indexDir := flag.String("indexDir", "", "indexDir to load and exit")
 	caseSensitive := flag.Bool("case", false, "case sensitive")

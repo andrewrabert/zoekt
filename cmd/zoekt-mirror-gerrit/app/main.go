@@ -13,7 +13,7 @@
 // limitations under the License.
 
 // Command zoekt-mirror-gerrit fetches all repos of a Gerrit host.
-package main
+package app
 
 import (
 	"bytes"
@@ -88,7 +88,7 @@ func validateRepoNameFormat(s string) {
 	}
 }
 
-func main() {
+func Main() {
 
 	dest := flag.String("dest", "", "destination directory")
 	namePattern := flag.String("name", "", "only clone repos whose name matches the regexp.")

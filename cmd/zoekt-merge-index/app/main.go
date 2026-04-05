@@ -11,7 +11,7 @@
 // limitations under the License.
 
 // Command zoekt-merge-index merges a set of index shards into a compound shard.
-package main
+package app
 
 import (
 	"bufio"
@@ -91,7 +91,7 @@ func explodeCmd(path string) error {
 	return index.Explode(filepath.Dir(path), path)
 }
 
-func main() {
+func Main() {
 	switch subCommand := os.Args[1]; subCommand {
 	case "merge":
 		compoundShardPath, err := mergeCmd(os.Args[2:])

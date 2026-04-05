@@ -14,7 +14,7 @@
 
 // Command zoekt-mirror-gitiles fetches all repos of a Gitiles host.
 // It does double duty for other "simple" web hosts.
-package main
+package app
 
 import (
 	"flag"
@@ -35,7 +35,7 @@ type crawlTarget struct {
 
 type hostCrawler func(*url.URL, func(string) bool) (map[string]*crawlTarget, error)
 
-func main() {
+func Main() {
 	dest := flag.String("dest", "", "destination directory")
 	namePattern := flag.String("name", "", "only clone repos whose name matches the regexp.")
 	excludePattern := flag.String("exclude", "", "don't mirror repos whose names match this regexp.")

@@ -1,6 +1,6 @@
 // This file contains commands which run in a non daemon mode for testing/debugging.
 
-package main
+package app
 
 import (
 	"context"

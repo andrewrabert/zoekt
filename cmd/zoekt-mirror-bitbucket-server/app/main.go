@@ -12,7 +12,7 @@
 
 // Command zoekt-mirror-bitbucket-server fetches all repos of a bitbucket project,
 // optionally of a specific type, and clones them.
-package main
+package app
 
 import (
 	"context"
@@ -32,7 +32,7 @@ import (
 	"github.com/sourcegraph/zoekt/gitindex"
 )
 
-func main() {
+func Main() {
 	dest := flag.String("dest", "", "destination directory")
 	serverUrl := flag.String("url", "", "BitBucket Server url")
 	disableTLS := flag.Bool("disable-tls", false, "disables TLS verification")

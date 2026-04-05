@@ -5,7 +5,7 @@
 //	zoekt-archive-index -incremental -commit b57cb1605fd11ba2ecfa7f68992b4b9cc791934d -name github.com/gorilla/mux -strip_components 1 https://codeload.github.com/gorilla/mux/legacy.tar.gz/b57cb1605fd11ba2ecfa7f68992b4b9cc791934d
 //
 //	zoekt-archive-index -branch master https://github.com/gorilla/mux/commit/b57cb1605fd11ba2ecfa7f68992b4b9cc791934d
-package main
+package app
 
 import (
 	"flag"
@@ -17,7 +17,7 @@ import (
 	"github.com/sourcegraph/zoekt/internal/archive"
 )
 
-func main() {
+func Main() {
 	var (
 		incremental = flag.Bool("incremental", true, "only index changed repositories")
 

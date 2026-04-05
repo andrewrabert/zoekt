@@ -14,7 +14,7 @@
 
 // Command zoekt-git-index indexes a single git repository. It works directly with git
 // repositories and supports git-specific features like branches and submodules.
-package main
+package app
 
 import (
 	"flag"
@@ -33,7 +33,7 @@ import (
 	"github.com/sourcegraph/zoekt/internal/profiler"
 )
 
-func run() int {
+func Main() int {
 	allowMissing := flag.Bool("allow_missing_branches", false, "allow missing branches.")
 	submodules := flag.Bool("submodules", true, "if set to false, do not recurse into submodules")
 	branchesStr := flag.String("branches", "HEAD", "git branches to index.")
@@ -143,7 +143,3 @@ func run() int {
 	return exitStatus
 }
 
-func main() {
-	exitStatus := run()
-	os.Exit(exitStatus)
-}

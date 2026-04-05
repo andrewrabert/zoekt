@@ -16,7 +16,7 @@
 // and clones them. It is strongly recommended to get a personal API token from
 // https://github.com/settings/tokens, save the token in a file, and point the
 // --token option to it.
-package main
+package app
 
 import (
 	"context"
@@ -54,7 +54,7 @@ type reposFilters struct {
 	visibility    []string
 }
 
-func main() {
+func Main() {
 	dest := flag.String("dest", "", "destination directory")
 	githubURL := flag.String("url", "", "GitHub Enterprise url. If not set github.com will be used as the host.")
 	org := flag.String("org", "", "organization to mirror")

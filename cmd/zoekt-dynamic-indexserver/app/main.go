@@ -16,7 +16,7 @@
 // zoekt-indexserver, it's designed for a "push-based" indexing model. The server
 // * listens to indexing commands
 // * reindexes specified repositories
-package main
+package app
 
 import (
 	"bytes"
@@ -283,7 +283,7 @@ func parseOptions() Options {
 	}
 }
 
-func main() {
+func Main() {
 	opts := parseOptions()
 	opts.createMissingDirectories()
 

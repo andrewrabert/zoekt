@@ -13,7 +13,7 @@
 // Command zoekt-sourcegraph-indexserver periodically reindexes repositories
 // from a Sourcegraph instance. It uses a "pull-based" design, where it periodically
 // reaches out to the Sourcegraph instance for the list of repositories to reindex.
-package main
+package app
 
 import (
 	"bytes"
@@ -1731,7 +1731,7 @@ func cloneURL(u *url.URL) *url.URL {
 	return u2
 }
 
-func main() {
+func Main() {
 	liblog := sglog.Init(sglog.Resource{
 		Name:       "zoekt-indexserver",
 		Version:    index.Version,

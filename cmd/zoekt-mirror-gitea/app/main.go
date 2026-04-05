@@ -16,7 +16,7 @@
 // and clones them. It is strongly recommended to get a personal API token from
 // https://gitea.com/user/settings/applications, save the token in a file, and point
 // the --token option to it.
-package main
+package app
 
 import (
 	"flag"
@@ -48,7 +48,7 @@ type reposFilters struct {
 	noArchived *bool
 }
 
-func main() {
+func Main() {
 	dest := flag.String("dest", "", "destination directory")
 	giteaURL := flag.String("url", "https://gitea.com/", "Gitea url. If not set gitea.com will be used as the host.")
 	org := flag.String("org", "", "organization to mirror")

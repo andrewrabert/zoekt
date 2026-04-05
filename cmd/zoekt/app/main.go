@@ -13,7 +13,7 @@
 // limitations under the License.
 
 // The 'zoekt' command supports searching over an index directory or shard.
-package main
+package app
 
 import (
 	"bytes"
@@ -162,7 +162,7 @@ func toSymbolQuery(q query.Q) query.Q {
 	})
 }
 
-func main() {
+func Main() {
 	shard := flag.String("shard", "", "search in a specific shard")
 	index := flag.String("index_dir",
 		filepath.Join(os.Getenv("HOME"), ".zoekt"), "search for index files in `directory`")

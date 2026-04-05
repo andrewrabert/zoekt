@@ -14,7 +14,7 @@
 
 // Command zoekt-indexserver starts a service that periodically reindexes repositories. It follows
 // a "pull-based" design, where it reaches out to code hosts to fetch new data.
-package main
+package app
 
 import (
 	"bytes"
@@ -245,7 +245,7 @@ func deleteOrphanIndexes(indexDir, repoDir string, watchInterval time.Duration) 
 	}
 }
 
-func main() {
+func Main() {
 	var opts Options
 	opts.defineFlags()
 	dataDir := flag.String("data_dir",

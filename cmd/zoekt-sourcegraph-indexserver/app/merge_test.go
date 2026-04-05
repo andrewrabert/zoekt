@@ -1,4 +1,4 @@
-package main
+package app
 
 import (
 	"crypto/sha1"
@@ -124,9 +124,9 @@ func TestMerge(t *testing.T) {
 	// A fixed set of shards gives us reliable shard sizes which makes it easy to
 	// define a cutoff with targetSizeBytes.
 	m := []string{
-		"../../testdata/shards/repo_v16.00000.zoekt",
-		"../../testdata/shards/repo2_v16.00000.zoekt",
-		"../../testdata/shards/ctagsrepo_v16.00000.zoekt",
+		"../../../testdata/shards/repo_v16.00000.zoekt",
+		"../../../testdata/shards/repo2_v16.00000.zoekt",
+		"../../../testdata/shards/ctagsrepo_v16.00000.zoekt",
 	}
 
 	testCases := []struct {

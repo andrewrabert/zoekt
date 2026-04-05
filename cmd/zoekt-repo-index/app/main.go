@@ -26,7 +26,7 @@
 //	  -repo_cache ~/zoekt-serving/repos/ \
 //	  -shard_limit 50000000 \
 //	   master:default_unrestricted.xml
-package main
+package app
 
 import (
 	"crypto/sha1"
@@ -120,7 +120,7 @@ func parseBranches(manifestRepoURL, revPrefix string, cache *gitindex.RepoCache,
 	return branches, nil
 }
 
-func main() {
+func Main() {
 	sizeMax := flag.Int("file_limit", 128<<10, "maximum file size")
 	shardLimit := flag.Int("shard_limit", 100<<20, "maximum corpus size for a shard")
 	parallelism := flag.Int("parallelism", 1, "maximum number of parallel indexing processes")

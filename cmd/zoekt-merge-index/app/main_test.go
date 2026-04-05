@@ -1,4 +1,4 @@
-package main
+package app
 
 import (
 	"context"
@@ -17,7 +17,7 @@ import (
 )
 
 func TestMerge(t *testing.T) {
-	v16Shards, err := filepath.Glob("../../testdata/shards/*_v16.*.zoekt")
+	v16Shards, err := filepath.Glob("../../../testdata/shards/*_v16.*.zoekt")
 	require.NoError(t, err)
 	sort.Strings(v16Shards)
 
@@ -50,7 +50,7 @@ func TestMerge(t *testing.T) {
 
 // Merge 2 simple shards and then explode them.
 func TestExplode(t *testing.T) {
-	v16Shards, err := filepath.Glob("../../testdata/shards/repo*_v16.*.zoekt")
+	v16Shards, err := filepath.Glob("../../../testdata/shards/repo*_v16.*.zoekt")
 	require.NoError(t, err)
 	sort.Strings(v16Shards)
 

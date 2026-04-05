@@ -13,7 +13,7 @@
 // limitations under the License.
 
 // Command zoekt-index indexes a directory of files.
-package main
+package app
 
 import (
 	"encoding/json"
@@ -60,7 +60,7 @@ func (a *fileAggregator) add(path string, info os.FileInfo, err error) error {
 	return nil
 }
 
-func main() {
+func Main() {
 	cpuProfile := flag.String("cpu_profile", "", "write cpu profile to file")
 	ignoreDirs := flag.String("ignore_dirs", ".git,.hg,.svn", "comma separated list of directories to ignore.")
 	metaFile := flag.String("meta", "", "path to .meta JSON file with repository description")

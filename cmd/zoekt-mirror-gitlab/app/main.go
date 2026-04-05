@@ -21,7 +21,7 @@
 //	machine gitlab.com
 //	login oauth
 //	password <personal access token>
-package main
+package app
 
 import (
 	"flag"
@@ -39,7 +39,7 @@ import (
 	"github.com/sourcegraph/zoekt/gitindex"
 )
 
-func main() {
+func Main() {
 	dest := flag.String("dest", "", "destination directory")
 	gitlabURL := flag.String("url", "https://gitlab.com/api/v4/", "Gitlab URL. If not set https://gitlab.com/api/v4/ will be used")
 	token := flag.String("token",
